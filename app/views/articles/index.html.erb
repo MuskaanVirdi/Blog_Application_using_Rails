@@ -1,0 +1,23 @@
+<% provide(:page_title,'All Post') %>
+
+<div style="padding:20px;">
+<% @articles.each do |article| %>
+  <section class="tm-slideshow-section" style="margin:auto;">
+    <div class="tm-slideshow">
+      <%= image_tag(article.image , style:"width:800px",:class =>"img-fluid tm-recommended-img") %>
+    </div>
+    <div class="tm-slideshow-description tm-bg-primary">
+      <h2 class=""><%= article.title %></h2>
+      <p><%= article.body %></p>
+      <%= link_to 'Read More', article ,:class=>"text-uppercase tm-btn tm-btn-white tm-btn-white-primary"%>
+      <%= link_to 'Edit', edit_article_path(article) ,:class=>"text-uppercase tm-btn tm-btn-white tm-btn-white-primary" %>
+      <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"text-uppercase tm-btn tm-btn-white tm-btn-white-primary" %>
+    </div>
+  </section>
+  <br>
+  
+  <% end%><br>
+  <%= link_to 'Add New Article', new_article_path, class:'text-uppercase btn-primary tm-btn mx-auto tm-d-table'%>
+  <br>
+  </div>
+

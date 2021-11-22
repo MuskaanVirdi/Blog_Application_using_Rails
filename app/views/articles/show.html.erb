@@ -1,0 +1,56 @@
+<% provide(:page_title,@article.title) %>
+
+<div style="color:white;padding:20px;">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+
+<div style="width:1000px;height:auto;">
+<%= image_tag(@article.image) %>
+</div>
+
+
+<p >
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+<h2 style="color:#c66995">COMMENTS</h2>
+<% @article.comments.each do |comment| %>
+  <p style="color:green;">
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p style="color:blue;">
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+<% end %>
+<h3 style="color:#69c6ba">Add a comment:</h3>
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :Commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p >
+    <%= form.submit  %>
+  </p>
+<% end %>
+
+
+<br>
+<div style="color:white;">
+<%= link_to 'Edit', edit_article_path(@article) ,:class=>"text-uppercase tm-btn tm-btn-white tm-btn-white-primary" %> |
+<%= link_to 'Back', articles_path ,:class=>"text-uppercase tm-btn tm-btn-white tm-btn-white-primary"%>
+</div>
+</div>
